@@ -345,3 +345,22 @@
   }
   export { quitApp };
   ```
+
+### 10. Update app based on user choise
+
+- update `index.ts` to call startapp or quit app based on user choice and displays a message when app starts up
+
+  ```ts
+  import { wellcomeMessageStatic } from './welcomeMessage.js';
+  import { quitApp } from './quitApp.js';
+  import { startApp } from './startApp.js';
+  if (askToPlayChoice === 'Play Game') {
+    await startApp();
+    let playAgainCheck = true;
+    while (playAgainCheck) {
+      await wellcomeMessageStatic();
+    }
+  } else {
+    await quitApp();
+  }
+  ```
