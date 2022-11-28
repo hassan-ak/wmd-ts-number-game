@@ -102,3 +102,60 @@
   ```
 
 - If everything is right we will have a console output.
+
+### 4. Create welcome message
+
+- Create `welcomeMessage.ts` will the following content to display welcome message to the user
+
+  ```ts
+  import chalkAnimation from 'chalk-animation';
+  import chalk from 'chalk';
+  let t1: string = chalk.inverse.bold('\n****************************\n');
+  let t2: string = chalk.inverse.bold('***');
+  let t3: string = chalk.greenBright.italic(' Number Guessing Game ');
+  async function msg1Promise(
+    t1: string,
+    t2: string,
+    t3: string
+  ): Promise<boolean> {
+    console.clear();
+    console.log(`${t1 + t2 + t3 + t2 + t1}`);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 700);
+    });
+  }
+  async function msg2Promise(): Promise<boolean> {
+    console.clear();
+    let radar = chalkAnimation.radar(
+      '\n****************************\n*** Number Guessing Game ***\n****************************\n',
+      0.6
+    );
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        radar.stop();
+        resolve(true);
+      }, 3200);
+    });
+  }
+  async function wellcomeMessage(): Promise<void> {
+    await msg1Promise(t1, t2, t3);
+    await msg2Promise();
+    await msg1Promise(t1, t2, t3);
+  }
+  async function wellcomeMessageStatic(): Promise<void> {
+    await msg1Promise(t1, t2, t3);
+  }
+  export { wellcomeMessage, wellcomeMessageStatic };
+  ```
+
+- All the functions are called through `index.ts` so update it with the following content
+
+  ```ts
+  #!/usr/bin/env node
+  import { wellcomeMessage } from './welcomeMessage.js';
+  (async (): Promise<void> => {
+    await wellcomeMessage();
+  })();
+  ```
