@@ -419,4 +419,39 @@
   export { askNumber };
   ```
 
-###
+### 13. Create a hint to display on wrong guess
+
+- Create `hint.ts` to display a message to be displayed based on miltiple cases
+
+  ```ts
+  import chalk from 'chalk';
+  function hint(
+    guessedNumber: number,
+    generatedNumber: number,
+    selectedMode: string,
+    guessNumber: number
+  ) {
+    if (selectedMode === 'Expert') {
+      return `, Number of ${chalk.red(
+        `tries left : ${5 - guessNumber}`
+      )} \n   new Number Generated : ${chalk.inverse(`******`)}`;
+    } else if (selectedMode === 'Beginner') {
+      return `, Number of ${chalk.red(
+        `tries left : ${10 - guessNumber}`
+      )} \n   ${
+        guessedNumber < generatedNumber
+          ? `Guess a ${chalk.red(`higher`)} number `
+          : `Guess a ${chalk.red(`lower`)} number`
+      }`;
+    } else if (selectedMode === 'Proficient') {
+      return `, Number of ${chalk.red(`tries left : ${8 - guessNumber}`)} \n`;
+    } else {
+      if (guessedNumber < generatedNumber) {
+        return `, Guess a ${chalk.red(`higher`)} number `;
+      } else {
+        return `, Guess a ${chalk.red(`lower`)} number`;
+      }
+    }
+  }
+  export { hint };
+  ```
