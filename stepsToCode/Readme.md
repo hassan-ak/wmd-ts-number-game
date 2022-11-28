@@ -584,3 +584,31 @@
     await quitApp();
   }
   ```
+
+### 18. Publish as NPX package
+
+- login to npm
+
+  ```cmd
+  npm login
+  ```
+
+- publish app
+
+  ```cmd
+  npm publish
+  ```
+
+- to update
+
+  ```cmd
+  npm version <type>
+  ```
+
+- version types
+
+  ```
+  patch
+  minor
+  major
+  ```
