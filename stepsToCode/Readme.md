@@ -299,21 +299,49 @@
 
 - create `startApp.ts` to define a function which displays some animaton before opeing the app
 
-```ts
-import ora, { Ora } from 'ora';
-import chalk from 'chalk';
-function startApp(): Promise<boolean> {
-  return new Promise<boolean>((resolve) => {
-    console.log('');
-    const spinner: Ora = ora(chalk.green(' Starting App '));
-    spinner.color = 'yellow';
-    spinner.start();
-    setTimeout(() => {
-      spinner.stop();
-      console.clear();
-      resolve(true);
-    }, 1500);
-  });
-}
-export { startApp };
-```
+  ```ts
+  import ora, { Ora } from 'ora';
+  import chalk from 'chalk';
+  function startApp(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      console.log('');
+      const spinner: Ora = ora(chalk.green(' Starting App '));
+      spinner.color = 'yellow';
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop();
+        console.clear();
+        resolve(true);
+      }, 1500);
+    });
+  }
+  export { startApp };
+  ```
+
+### 9. Create function to quit app
+
+- create `quitApp.ts` to define a function which quits the app after displaying some animation
+
+  ```ts
+  import ora, { Ora } from 'ora';
+  import chalk from 'chalk';
+  function quitApp(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      console.log('');
+      const spinner: Ora = ora(chalk.magenta(' See You Again '));
+      spinner.spinner = 'material';
+      spinner.color = 'magenta';
+      spinner.start();
+      setTimeout(() => {
+        spinner.color = 'red';
+        spinner.text = chalk.bgRed(' Closing App ! ');
+      }, 1500);
+      setTimeout(() => {
+        spinner.stop();
+        console.clear();
+        resolve(true);
+      }, 3000);
+    });
+  }
+  export { quitApp };
+  ```
