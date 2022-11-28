@@ -11,12 +11,30 @@
     "type": "git",
     "url": "git+https://github.com/hassan-ak/wmd-ts-number-game.git"
   },
-  "keywords": ["Number guessing Game","typescript","npx"],
+  "keywords": [
+    "Number guessing Game",
+    "typescript",
+    "npx"
+  ],
   "bin": "./dist/index.js",
   "author": "Hassan Ali Khan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hassan-ak/wmd-ts-number-game/issues"
   },
-  "homepage": "https://github.com/hassan-ak/wmd-ts-number-game#readme"
+  "homepage": "https://github.com/hassan-ak/wmd-ts-number-game#readme",
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "chalk-animation": "^2.0.3",
+    "inquirer": "^9.1.4",
+    "ora": "^6.1.2",
+    "random-int": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/chalk-animation": "^1.6.1",
+    "@types/inquirer": "^9.0.3",
+    "@types/ora": "^3.2.0",
+    "@types/random-int": "^2.0.3"
+  }
 }
