@@ -263,3 +263,34 @@
   import { modesOfGame } from './modes.js';
   await modesOfGame('all');
   ```
+
+### 7. Ask user to play or quit
+
+- create askToPlay.ts to define a function which asks the user to play game or quit the app
+
+  ```ts
+  import inquirer from 'inquirer';
+  async function askToPlay(): Promise<any> {
+    enum Commands {
+      Use = 'Play Game',
+      Quit = 'Quit App',
+    }
+    const startAppC = await inquirer.prompt([
+      {
+        message: 'Do you wan to continue ? ',
+        name: 'startApp',
+        type: 'list',
+        choices: Object.values(Commands),
+      },
+    ]);
+    return startAppC['startApp'];
+  }
+  export { askToPlay };
+  ```
+
+- Update `index.ts` to call above function
+
+  ```ts
+  import { askToPlay } from './askToPlay.js';
+  let askToPlayChoice = await askToPlay();
+  ```
