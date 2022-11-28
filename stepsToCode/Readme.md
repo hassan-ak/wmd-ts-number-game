@@ -499,3 +499,73 @@
   }
   export { playAgain };
   ```
+
+### 16. Comibe All features of the game
+
+- create `game.ts` to define all features of the game
+
+  ```ts
+  import chalk from 'chalk';
+  import { hint } from './hint.js';
+  import randomInteger from 'random-int';
+  import { askNumber } from './askNumber.js';
+  import { playAgain } from './playAgain.js';
+  import { quitMidway } from './quitMidway.js';
+  async function game(selectedMode: string) {
+    let guessNumber: number = 1;
+    let startGuessing: boolean = true;
+    let playAgainResponse: string = '⛔ No';
+    let quitMidwayResponse: string = '👍 No';
+    let generatedNumber = randomInteger(1, 20);
+    console.log(`Random Number Generated : ${chalk.inverse(`******`)}\n`);
+    while (startGuessing) {
+      if (
+        selectedMode === 'Newbie' ||
+        (selectedMode === 'Beginner' && guessNumber <= 10) ||
+        (selectedMode === 'Proficient' && guessNumber <= 8) ||
+        (selectedMode === 'Expert' && guessNumber <= 5)
+      ) {
+        let guessedNumber = await askNumber(guessNumber);
+        if (guessedNumber === generatedNumber) {
+          console.log(
+            `\n🎆 🏅 🎆 ${chalk.bgGreen.bold(
+              ' Congratulation '
+            )}: You guessed the number in ${chalk.magenta(
+              guessNumber
+            )} tries.\n`
+          );
+          startGuessing = false;
+          playAgainResponse = await playAgain();
+        } else if (guessedNumber === 4815162342) {
+          quitMidwayResponse = await quitMidway();
+          if (quitMidwayResponse === '👍 No') {
+            guessNumber > 1 ? (guessNumber -= 1) : guessNumber;
+            console.log('');
+          } else {
+            startGuessing = false;
+            playAgainResponse = await playAgain();
+          }
+        } else {
+          if (selectedMode === 'Expert') {
+            generatedNumber = randomInteger(1, 20);
+          }
+          console.log(
+            `\n❌ Wrong Answer${hint(
+              guessedNumber,
+              generatedNumber,
+              selectedMode,
+              guessNumber
+            )}\n`
+          );
+          guessNumber += 1;
+        }
+      } else {
+        console.log(`\n☠️☠️☠️ ${chalk.bgRed('You lost the game.')} ☠️☠️☠️\n`);
+        startGuessing = false;
+        playAgainResponse = await playAgain();
+      }
+    }
+    return playAgainResponse;
+  }
+  export { game };
+  ```
