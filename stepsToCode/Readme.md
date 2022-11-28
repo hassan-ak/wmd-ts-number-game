@@ -346,7 +346,7 @@
   export { quitApp };
   ```
 
-### 10. Update app based on user choise
+### 10. Update app based on user choice
 
 - update `index.ts` to call startapp or quit app based on user choice and displays a message when app starts up
 
@@ -363,4 +363,38 @@
   } else {
     await quitApp();
   }
+  ```
+
+### 11. Ask user to select mode
+
+- create `askForMode.ts` to ask user to select mode to play in
+
+  ```ts
+  import inquirer from 'inquirer';
+  async function askForMode(): Promise<any> {
+    enum Commands {
+      Newbie = 'Newbie',
+      Beginner = 'Beginner',
+      Proficient = 'Proficient',
+      Expert = 'Expert',
+    }
+    const selectModeC = await inquirer.prompt([
+      {
+        message: 'Select Mode ? ',
+        name: 'selectMode',
+        type: 'list',
+        choices: Object.values(Commands),
+      },
+    ]);
+    return selectModeC['selectMode'];
+  }
+  export { askForMode };
+  ```
+
+- update `index.ts` to call above function and based on user choise displays instruction
+
+  ```ts
+  import { askForMode } from './askForMode.js';
+  let selectedMode = await askForMode();
+  await modesOfGame(selectedMode);
   ```

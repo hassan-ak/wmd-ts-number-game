@@ -7,6 +7,7 @@ import { startApp } from './startApp.js';
 import { askToPlay } from './askToPlay.js';
 import { instructions } from './instructions.js';
 import { wellcomeMessage, wellcomeMessageStatic } from './welcomeMessage.js';
+import { askForMode } from './askForMode.js';
 
 /**********************************************************************/
 // Call all app functions in a particular sequence
@@ -23,6 +24,9 @@ import { wellcomeMessage, wellcomeMessageStatic } from './welcomeMessage.js';
     let playAgainCheck = true;
     while (playAgainCheck) {
       await wellcomeMessageStatic();
+      let selectedMode = await askForMode();
+      // display mode based on user choice
+      await modesOfGame(selectedMode);
     }
   } else {
     await quitApp();
