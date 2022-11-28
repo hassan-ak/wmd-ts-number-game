@@ -266,7 +266,7 @@
 
 ### 7. Ask user to play or quit
 
-- create askToPlay.ts to define a function which asks the user to play game or quit the app
+- create `askToPlay.ts` to define a function which asks the user to play game or quit the app
 
   ```ts
   import inquirer from 'inquirer';
@@ -294,3 +294,26 @@
   import { askToPlay } from './askToPlay.js';
   let askToPlayChoice = await askToPlay();
   ```
+
+### 8. Display some animation before opening game
+
+- create `startApp.ts` to define a function which displays some animaton before opeing the app
+
+```ts
+import ora, { Ora } from 'ora';
+import chalk from 'chalk';
+function startApp(): Promise<boolean> {
+  return new Promise<boolean>((resolve) => {
+    console.log('');
+    const spinner: Ora = ora(chalk.green(' Starting App '));
+    spinner.color = 'yellow';
+    spinner.start();
+    setTimeout(() => {
+      spinner.stop();
+      console.clear();
+      resolve(true);
+    }, 1500);
+  });
+}
+export { startApp };
+```
