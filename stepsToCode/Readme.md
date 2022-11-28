@@ -455,3 +455,25 @@
   }
   export { hint };
   ```
+
+### 14. Create a function to suspend game at any time
+
+- create `quitMidway.ts` to ask user in case he opts to quit the app any time
+
+  ```ts
+  import inquirer from 'inquirer';
+  async function quitMidway(): Promise<string> {
+    console.log('');
+    type QuitMidwayResponse = { quitMidway: string };
+    let quitMidwayResponse: QuitMidwayResponse = await inquirer.prompt([
+      {
+        message: `Do You wan't to quit the game Midway ? `,
+        type: 'list',
+        name: 'quitMidway',
+        choices: ['⛔ Yes', '👍 No'],
+      },
+    ]);
+    return quitMidwayResponse.quitMidway;
+  }
+  export { quitMidway };
+  ```
