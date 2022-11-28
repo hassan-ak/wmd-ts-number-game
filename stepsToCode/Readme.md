@@ -398,3 +398,25 @@
   let selectedMode = await askForMode();
   await modesOfGame(selectedMode);
   ```
+
+### 12. Ask user to guess number
+
+- Create `askNumber.ts` to ask user to guess the number
+
+  ```ts
+  // Ask user to guess the number
+  import inquirer from 'inquirer';
+  async function askNumber(guessNumber: number): Promise<number> {
+    let number = await inquirer.prompt([
+      {
+        message: `Guess the number (try no. ${guessNumber}) : `,
+        type: 'number',
+        name: 'guessedNumber',
+      },
+    ]);
+    return number.guessedNumber;
+  }
+  export { askNumber };
+  ```
+
+###
