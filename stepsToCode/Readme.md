@@ -569,3 +569,18 @@
   }
   export { game };
   ```
+
+### 17. Comibe All features of the game
+
+- update `index.ts` to use game function and quit or continue playing based on result from the game
+
+  ```ts
+  import { game } from './game.js';
+  let resultPlayAgain = await game(selectedMode);
+  if (resultPlayAgain === '👍 Yes') {
+    continue;
+  } else {
+    playAgainCheck = false;
+    await quitApp();
+  }
+  ```
