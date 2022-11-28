@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 // Number guessing game
+import { modesOfGame } from './modes.js';
 import { instructions } from './instructions.js';
 import { wellcomeMessage } from './welcomeMessage.js';
 
@@ -9,4 +10,6 @@ import { wellcomeMessage } from './welcomeMessage.js';
 (async (): Promise<void> => {
   await wellcomeMessage();
   await instructions();
+  // display all modes
+  await modesOfGame('all');
 })();
