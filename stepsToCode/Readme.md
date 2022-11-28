@@ -159,3 +159,30 @@
     await wellcomeMessage();
   })();
   ```
+
+### 5. Display Instructions to play
+
+- Create `instructions.ts` will the following content to display instructions on how to play the game
+
+  ```ts
+  import chalk from 'chalk';
+  async function instructions(): Promise<boolean> {
+    return await new Promise<boolean>((resolve) => {
+      console.log(chalk.cyan('How to play : '));
+      console.log('\tA randowm number between 1 to 20 will be generated');
+      console.log('\tTo win, guess the number');
+      console.log('\tYou can play in any of the following mode\n');
+      setTimeout(() => {
+        resolve(true);
+      }, 1500);
+    });
+  }
+  export { instructions };
+  ```
+
+- Update `index.ts` to call this function
+
+  ```ts
+  import { instructions } from './instructions.js';
+  await instructions();
+  ```
