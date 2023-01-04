@@ -54,8 +54,8 @@ This project is published as an [npm package](https://www.npmjs.com/package/wmd-
 
 ## Demo
 
-## Steps to code CLI Number Guessing Game
-
 [<img src="numbergame.PNG" width="75%">](https://youtu.be/ok95eqjwHj4 'CLI Number Guessing Game')
+
+## Steps to code CLI Number Guessing Game
 
 All the details to code this app is given [here](https://github.com/hassan-ak/wmd-ts-number-game/blob/main/stepsToCode/Readme.md).
